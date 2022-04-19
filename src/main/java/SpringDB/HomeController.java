@@ -2,7 +2,10 @@ package SpringDB;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import SpringDB.model.UserCrud;
 import SpringDB.schema.Users;
@@ -13,14 +16,13 @@ public class HomeController {
 	@Autowired
 	UserCrud u;
 	
-	@RequestMapping("home")
+	@RequestMapping({"/home","/"})
 	public String display() { 
-		for(Users u:u.findAll()) {
-			System.out.println(u.getEmail());
-		}
-		for(Users u:u.findByPawd("123")) {
-			System.out.println(u.getEmail());
-		}
-		return "yo";
+		return "Home.jsp";
 	}
+	@RequestMapping("accessdenied")
+	public String unauthenticated() { 
+		return "Unauthenticated.jsp";
+	}
+	
 }
