@@ -1,15 +1,13 @@
 package SpringDB.model;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
-
 import SpringDB.schema.Users;
 
-public interface UserCrud extends CrudRepository<Users,Integer>{
-	
-	
-	@Query(value="SELECT * FROM users WHERE password='123'",nativeQuery=true)
-	List<Users> findByPawd(String pwd);
+
+public interface UserCrud extends JpaRepository<Users,Integer>{
+	Optional<Users> findByEmail(String email);
 }
